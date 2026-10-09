@@ -1,4 +1,4 @@
-# LRO Ligações 0.8.0 — pacote completo para repositório novo
+# LRO Ligações 0.8.1 — pacote completo para repositório novo
 
 ## Os quatro arquivos que devem aparecer no GitHub
 
@@ -9,7 +9,7 @@
 | `requirements.txt` | Bibliotecas instaladas automaticamente pelo Streamlit |
 | `README.md` | Estas instruções |
 
-Extraia o ZIP principal `LRO_Ligacoes_COMPLETO_v0_8_0.zip`. Envie os **quatro arquivos resultantes** diretamente à raiz do repositório. Mantenha `codigo_lro.zip` compactado: o próprio aplicativo o abre ao iniciar. Nesta distribuição não é necessário criar nem enviar pastas `lro/`, `data/` ou `docs/` separadamente.
+Extraia o ZIP principal `LRO_Ligacoes_COMPLETO_v0_8_1.zip`. Envie os **quatro arquivos resultantes** diretamente à raiz do repositório. Mantenha `codigo_lro.zip` compactado: o próprio aplicativo o abre ao iniciar. Nesta distribuição não é necessário criar nem enviar pastas `lro/`, `data/` ou `docs/` separadamente.
 
 ## GitHub: repositório novo
 
@@ -27,7 +27,7 @@ Extraia o ZIP principal `LRO_Ligacoes_COMPLETO_v0_8_0.zip`. Envie os **quatro ar
 4. Em **Main file path**, informe **`app.py`**.
 5. Em **Advanced settings → Python version**, escolha **3.12**.
 6. Publique. Não é necessário preencher **Secrets** para este aplicativo.
-7. Ao abrir, confira a versão **0.8.0** e as cinco famílias do seletor **Tipo de ligação**.
+7. Ao abrir, confira a versão **0.8.1** e as cinco famílias do seletor **Tipo de ligação**.
 
 Ao atualizar futuramente, envie os quatro arquivos do novo pacote juntos e reinicie o app. O inicializador identifica se `app.py` e `codigo_lro.zip` pertencem à mesma distribuição, evitando misturar módulos de versões diferentes.
 
@@ -82,10 +82,26 @@ O inicializador extrai o código para uma pasta temporária privada no servidor 
 A navegação entre famílias mantém o projeto em edição; rotulada e engastada conservam rascunhos independentes. Valores numéricos não finitos nunca produzem uma verificação favorável. Os modelos estruturais da 0.7.4 foram preservados, inclusive as ressalvas da W200 e as linhas intermediárias sem crédito resistente. Veja `docs/AJUSTES_V075.md` dentro de `codigo_lro.zip`. Salve o JSON para preservar o projeto além da sessão.
 
 
-## Novo na 0.8.0
+## Placas de base incluídas
 
 Em **Placa de base · Tipo 1**, informe perfil, N/M/V já de cálculo, espessura e aço da chapa, bitola dos quatro chumbadores, a₁/a₂ e concreto/graute. Os seis regimes C1/C2/C3 e T1/T2/T3 são selecionados automaticamente. Há exemplos didáticos, desenho, JSON e memória Word. Nesta família, **N positivo significa compressão**, claramente identificado na tela.
 
-Concreto normal com 20 ≤ fck ≤ 50 MPa. Chumbadores externos ASTM A36. Sem flexão biaxial, placa enrijecida ou chumbadores químicos. O cortante pode usar atrito ou uma resistência de dispositivo documentada externamente, sem somar os dois caminhos. O app não dimensiona a chave de cisalhamento nesta versão.
+Concreto normal com 20 ≤ fck ≤ 50 MPa. Chumbadores externos ASTM A36. Sem flexão biaxial, placa enrijecida ou chumbadores químicos. O cortante pode usar atrito ou uma resistência de dispositivo documentada externamente, sem somar os dois caminhos. A chave de chapa retangular tem as verificações locais descritas a seguir; demais formatos usam memória externa.
 
 A conclusão separa as verificações dos componentes da base completa. Os testes não aprovam automaticamente o projeto. Não houve publicação automática.
+
+
+## Novo na 0.8.1: chave de chapa retangular
+
+O caminho **Chave de chapa retangular · verificações locais** calcula contato no concreto, flexão e cisalhamento da chapa, relação entre espessuras e momento adicional do cortante: **Mef=M+V[tp+(bv+en)/2]**, com sinais. Use M/V na face superior da placa, antes dessa parcela. O app usa o graute real e não soma atrito. Há exemplo didático de cortante puro, desenho e memória Word.
+
+As ações Vw/Mw para dimensionar as soldas são obtidas na resistência de contato do concreto. Soldas, metal-base, flexão local da fixação, ruptura do concreto e bloco armado continuam a complementar. “Atende” vale somente para cada verificação local. Chaves cruciformes/perfis W continuam no caminho documentado externamente; sua geometria não é convertida em chapa equivalente.
+
+Projetos anteriores e os outros modelos de ligação foram preservados. Não houve publicação automática.
+
+
+## Três opções de transferência do cortante
+
+O seletor principal agora distingue **chumbadores**, **barra/chave de cisalhamento** e **atrito**. Uma nova base abre em chumbadores; atrito permanece disponível e os projetos antigos mantêm sua escolha. Nos chumbadores, esta versão compara o **VRd externo do grupo instalado para a combinação atual**, incluindo interação e concreto; não calcula internamente o corte das barras. Capacidade/referência são independentes das da chave. É necessária confirmação de aplicabilidade, invalidada ao mudar os dados pertinentes. Enquanto pendente, os outros cálculos N–M continuam disponíveis. Não há soma automática dos caminhos.
+
+A revisão geral do posicionamento de textos/cotas/chamadas nos desenhos ficou registrada como melhoria de baixa prioridade para etapa futura, conforme solicitado.
