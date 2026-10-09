@@ -1,4 +1,4 @@
-# LRO Ligações 0.8.1 — pacote completo para repositório novo
+# LRO Ligações 0.8.3 — pacote completo para repositório novo
 
 ## Os quatro arquivos que devem aparecer no GitHub
 
@@ -9,7 +9,7 @@
 | `requirements.txt` | Bibliotecas instaladas automaticamente pelo Streamlit |
 | `README.md` | Estas instruções |
 
-Extraia o ZIP principal `LRO_Ligacoes_COMPLETO_v0_8_1.zip`. Envie os **quatro arquivos resultantes** diretamente à raiz do repositório. Mantenha `codigo_lro.zip` compactado: o próprio aplicativo o abre ao iniciar. Nesta distribuição não é necessário criar nem enviar pastas `lro/`, `data/` ou `docs/` separadamente.
+Extraia o ZIP principal `LRO_Ligacoes_COMPLETO_v0_8_3.zip`. Envie os **quatro arquivos resultantes** diretamente à raiz do repositório. Mantenha `codigo_lro.zip` compactado: o próprio aplicativo o abre ao iniciar. Nesta distribuição não é necessário criar nem enviar pastas `lro/`, `data/` ou `docs/` separadamente.
 
 ## GitHub: repositório novo
 
@@ -27,7 +27,7 @@ Extraia o ZIP principal `LRO_Ligacoes_COMPLETO_v0_8_1.zip`. Envie os **quatro ar
 4. Em **Main file path**, informe **`app.py`**.
 5. Em **Advanced settings → Python version**, escolha **3.12**.
 6. Publique. Não é necessário preencher **Secrets** para este aplicativo.
-7. Ao abrir, confira a versão **0.8.1** e as cinco famílias do seletor **Tipo de ligação**.
+7. Ao abrir, confira a versão **0.8.3** e as cinco famílias do seletor **Tipo de ligação**.
 
 Ao atualizar futuramente, envie os quatro arquivos do novo pacote juntos e reinicie o app. O inicializador identifica se `app.py` e `codigo_lro.zip` pertencem à mesma distribuição, evitando misturar módulos de versões diferentes.
 
@@ -86,12 +86,12 @@ A navegação entre famílias mantém o projeto em edição; rotulada e engastad
 
 Em **Placa de base · Tipo 1**, informe perfil, N/M/V já de cálculo, espessura e aço da chapa, bitola dos quatro chumbadores, a₁/a₂ e concreto/graute. Os seis regimes C1/C2/C3 e T1/T2/T3 são selecionados automaticamente. Há exemplos didáticos, desenho, JSON e memória Word. Nesta família, **N positivo significa compressão**, claramente identificado na tela.
 
-Concreto normal com 20 ≤ fck ≤ 50 MPa. Chumbadores externos ASTM A36. Sem flexão biaxial, placa enrijecida ou chumbadores químicos. O cortante pode usar atrito ou uma resistência de dispositivo documentada externamente, sem somar os dois caminhos. A chave de chapa retangular tem as verificações locais descritas a seguir; demais formatos usam memória externa.
+Concreto normal com 20 ≤ fck ≤ 50 MPa. Chumbadores externos ASTM A36. Sem flexão biaxial, placa enrijecida ou chumbadores químicos. O cortante pode usar chumbadores com arruelas soldadas, atrito, chave de chapa retangular ou resistência externa documentada, no domínio de cada rota, sem somar os caminhos. As verificações locais e as pendências de cada modelo são descritas a seguir.
 
 A conclusão separa as verificações dos componentes da base completa. Os testes não aprovam automaticamente o projeto. Não houve publicação automática.
 
 
-## Novo na 0.8.1: chave de chapa retangular
+## Incluído desde a 0.8.1: chave de chapa retangular
 
 O caminho **Chave de chapa retangular · verificações locais** calcula contato no concreto, flexão e cisalhamento da chapa, relação entre espessuras e momento adicional do cortante: **Mef=M+V[tp+(bv+en)/2]**, com sinais. Use M/V na face superior da placa, antes dessa parcela. O app usa o graute real e não soma atrito. Há exemplo didático de cortante puro, desenho e memória Word.
 
@@ -102,6 +102,28 @@ Projetos anteriores e os outros modelos de ligação foram preservados. Não hou
 
 ## Três opções de transferência do cortante
 
-O seletor principal agora distingue **chumbadores**, **barra/chave de cisalhamento** e **atrito**. Uma nova base abre em chumbadores; atrito permanece disponível e os projetos antigos mantêm sua escolha. Nos chumbadores, esta versão compara o **VRd externo do grupo instalado para a combinação atual**, incluindo interação e concreto; não calcula internamente o corte das barras. Capacidade/referência são independentes das da chave. É necessária confirmação de aplicabilidade, invalidada ao mudar os dados pertinentes. Enquanto pendente, os outros cálculos N–M continuam disponíveis. Não há soma automática dos caminhos.
+O seletor principal distingue **chumbadores**, **barra/chave de cisalhamento** e **atrito**, sem soma automática de resistências. Uma nova base abre em chumbadores com **quatro arruelas soldadas**, no domínio descrito abaixo. Atrito e resistência externa documentada continuam disponíveis. Projetos antigos conservam seu caminho e não são convertidos em aprovação nativa. Na rota externa, capacidade e referência são independentes das da chave; a confirmação de aplicabilidade é vinculada aos dados atuais e invalidada quando esses dados mudam.
 
 A revisão geral do posicionamento de textos/cotas/chamadas nos desenhos ficou registrada como melhoria de baixa prioridade para etapa futura, conforme solicitado.
+
+
+## Novo na 0.8.3: cortante nos chumbadores
+
+O modelo nativo usa quatro barras ASTM A36 com arruelas especiais quadradas soldadas à placa, furo-padrão db+1,5 mm e dimensões reais de lado/espessura. Calcula as trações simultâneas por barra, a expressão especial da NBR 6.7.2.5, o limite adicional da interação geral de 6.3.3.4 e o limite local de concreto. Aplica o mínimo por barra antes da soma; no limite de tração, a reserva de cortante é zero. Não presume V/4 nem soma atrito ou chave.
+
+A expressão publicada tem índice i na raiz e 1 no termo subtrativo. O app adota explicitamente a maior tração simultânea neste último termo como limite conservador e avisa quando as trações diferem. Isso não é apresentado como correção oficial da norma.
+
+Cada solda recebe como ação de dimensionamento Fv,Rd sem redução. **Soldas, arruelas/transferência local, ancoragem no concreto, bloco e demais verificações da base continuam a complementar.** O limite local de concreto não substitui cone, arrancamento, pryout, bordas ou grupo. O resultado favorável dos componentes não aprova a base completa.
+
+Há desenho das quatro arruelas reais, tabela de trações e resistências individuais, memória Word com equações editáveis e exemplos JSON. Método, domínio e ressalvas: `docs/CHUMBADORES_CORTANTE_V082.md`. Registro de software: `docs/VALIDACAO_V082.md`. A 0.8.1 permanece como distribuição independente.
+
+
+## Novidades específicas da 0.8.3
+
+- Verificação complementar do cone de arrancamento por tração, segundo o método ACI 318-19 apresentado no DG1, para ancoragem moldada no local com cabeça/porca/placa de apoio e concreto íntegro. Usa as trações simultâneas reais, bordas do bloco e sobreposição dos cones. Não aprova a ancoragem completa.
+- Soldas da alma e das mesas escolhidas independentemente: chanfro de penetração total ou filete. Para filete, entrada por perna ou garganta com conversão conservando a dimensão física. Especificação e desenho; resistência geral N/M/V ainda não calculada.
+- Graute com talude a 45°, sem aumentar artificialmente a área resistente de contato.
+- Vínculo rotulado/engastado como intenção do modelo, sem certificação de rigidez; dois enrijecedores no plano da alma como detalhamento, sem crédito resistente.
+- Tipos de chumbador e geometria da peça enterrada separados da arruela superior soldada. Gancho J e barra reta com mecanismo indefinido não recebem resistência de ancoragem inventada.
+
+Consulte `docs/PLACAS_DE_BASE_V083.md`, `docs/CONE_CONCRETO_V083.md` e as pendências específicas exibidas pelo app. Históricos de versões anteriores descrevem o alcance daquelas versões.
