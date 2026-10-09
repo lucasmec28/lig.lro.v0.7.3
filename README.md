@@ -1,4 +1,4 @@
-# LRO Ligações 0.7.3 — pacote completo para repositório novo
+# LRO Ligações 0.8.0 — pacote completo para repositório novo
 
 ## Os quatro arquivos que devem aparecer no GitHub
 
@@ -9,7 +9,7 @@
 | `requirements.txt` | Bibliotecas instaladas automaticamente pelo Streamlit |
 | `README.md` | Estas instruções |
 
-Extraia o ZIP principal `LRO_Ligacoes_COMPLETO_v0_7_3.zip`. Envie os **quatro arquivos resultantes** diretamente à raiz do repositório. Mantenha `codigo_lro.zip` compactado: o próprio aplicativo o abre ao iniciar. Nesta distribuição não é necessário criar nem enviar pastas `lro/`, `data/` ou `docs/` separadamente.
+Extraia o ZIP principal `LRO_Ligacoes_COMPLETO_v0_8_0.zip`. Envie os **quatro arquivos resultantes** diretamente à raiz do repositório. Mantenha `codigo_lro.zip` compactado: o próprio aplicativo o abre ao iniciar. Nesta distribuição não é necessário criar nem enviar pastas `lro/`, `data/` ou `docs/` separadamente.
 
 ## GitHub: repositório novo
 
@@ -27,7 +27,7 @@ Extraia o ZIP principal `LRO_Ligacoes_COMPLETO_v0_7_3.zip`. Envie os **quatro ar
 4. Em **Main file path**, informe **`app.py`**.
 5. Em **Advanced settings → Python version**, escolha **3.12**.
 6. Publique. Não é necessário preencher **Secrets** para este aplicativo.
-7. Ao abrir, confira a versão **0.7.3** e as quatro famílias do seletor **Tipo de ligação**.
+7. Ao abrir, confira a versão **0.8.0** e as cinco famílias do seletor **Tipo de ligação**.
 
 Ao atualizar futuramente, envie os quatro arquivos do novo pacote juntos e reinicie o app. O inicializador identifica se `app.py` e `codigo_lro.zip` pertencem à mesma distribuição, evitando misturar módulos de versões diferentes.
 
@@ -39,13 +39,18 @@ Ao atualizar futuramente, envie os quatro arquivos do novo pacote juntos e reini
 - **End plate rotulada** na mesa da coluna.
 - **End plate engastada** na mesa da coluna, com extensão acima e abaixo ou somente acima, no domínio implementado.
 
+- **Placa de base Tipo 1**, perfil I/H e quatro chumbadores externos, com N, M no eixo forte e V. Verifica chapa, contato, aço dos chumbadores e caminho de cortante declarado. Ancoragem no concreto, bloco armado, soldas e rigidez precisam de cálculo complementar.
+
 As duas single plates são acessadas pela mesma família no seletor. O pacote inclui cálculo, desenhos proporcionais, projetos JSON, catálogo de perfis, geração de memória Word e documentação dos métodos.
 
-## O que mudou nesta versão
+## Melhorias das ligações já incluídas
 
-Esta versão altera a distribuição e a inicialização. Os cálculos e os limites técnicos da versão 0.7.2 são preservados. O enrijecedor oposto continua sendo uma opção de detalhamento, sem aumento atribuído à resistência à punção; as premissas e exclusões permanecem na tela e no Word.
+- W200 e outros parâmetros fora da faixa ensaiada podem seguir com avisos de extrapolação, sem confirmar resistência ou rigidez fora desse domínio.
+- Espaçamentos máximos e bordas máximas não atendidos permitem continuar o cálculo e exportar o Word, mantendo a não conformidade visível.
+- A end plate engastada tem o campo **Linhas intermediárias entre as mesas** em **Chapa e parafusos**. Cada linha adiciona dois parafusos, somente para detalhamento, sem crédito resistente. Os novos furos são considerados nos ligamentos e blocos; o arranjo ampliado permanece com ressalva.
+- A revisão das cinco ligações e seus limites está em `docs/AJUSTES_V074.md`, dentro de `codigo_lro.zip`.
 
-No print recebido em 09/10/2026, todos os caminhos de `lro/` e `data/` foram indicados como ausentes no local esperado. O novo formato reúne esses caminhos dentro de um único arquivo de código e não depende do envio de pastas pelo navegador.
+**Se o repositório já está funcionando:** substitua seus quatro arquivos pelos quatro deste pacote e reinicie o app. Não é necessário criar outro repositório.
 
 ## Código e uso local
 
@@ -70,3 +75,17 @@ O inicializador extrai o código para uma pasta temporária privada no servidor 
 
 - GitHub: <https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository>
 - Streamlit: <https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/deploy>
+
+
+## Correções da 0.7.5
+
+A navegação entre famílias mantém o projeto em edição; rotulada e engastada conservam rascunhos independentes. Valores numéricos não finitos nunca produzem uma verificação favorável. Os modelos estruturais da 0.7.4 foram preservados, inclusive as ressalvas da W200 e as linhas intermediárias sem crédito resistente. Veja `docs/AJUSTES_V075.md` dentro de `codigo_lro.zip`. Salve o JSON para preservar o projeto além da sessão.
+
+
+## Novo na 0.8.0
+
+Em **Placa de base · Tipo 1**, informe perfil, N/M/V já de cálculo, espessura e aço da chapa, bitola dos quatro chumbadores, a₁/a₂ e concreto/graute. Os seis regimes C1/C2/C3 e T1/T2/T3 são selecionados automaticamente. Há exemplos didáticos, desenho, JSON e memória Word. Nesta família, **N positivo significa compressão**, claramente identificado na tela.
+
+Concreto normal com 20 ≤ fck ≤ 50 MPa. Chumbadores externos ASTM A36. Sem flexão biaxial, placa enrijecida ou chumbadores químicos. O cortante pode usar atrito ou uma resistência de dispositivo documentada externamente, sem somar os dois caminhos. O app não dimensiona a chave de cisalhamento nesta versão.
+
+A conclusão separa as verificações dos componentes da base completa. Os testes não aprovam automaticamente o projeto. Não houve publicação automática.
