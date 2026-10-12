@@ -1,19 +1,19 @@
-# LRO Ligações 0.9.35-corner-compression-dev
+# LRO Ligações 0.9.37-one-root-compression-dev
 
-APP completo para revisão técnica do escopo limitado de ligação de canto soldada com 2L-T simétrico em compressão no eixo forte.
+Ligação soldada 2L-T com uma raiz na mesa W: compressão axial local condicionada, mantendo as 19 rotas.
 
 ## Instalação
 
 Mantenha exatamente quatro arquivos na raiz: app.py, codigo_lro.zip, requirements.txt e README.md. Use app.py como entrada Streamlit e mantenha codigo_lro.zip compactado. Não misture versões. Reinicie após atualizar os quatro arquivos. Nenhum código é baixado durante a inicialização.
 
-## Validação e limites
+## Resultado e limites
 
-5269 casos distintos aprovados. 1 caso permanece falha bruta porque o oráculo externo histórico de contato dos parafusos não está disponível; ele não foi contado como aprovado. Nenhuma regressão inesperada foi observada. O registro completo está em docs/VALIDATION0935.json; observações de reexecução do pacote não foram adicionadas à contagem de testes-fonte. Uma correção localizada no rodapé do desenho ocorreu durante o agregado; os 115 testes afetados, já incluídos na contagem, e 22 cenários de saídas foram reexecutados nos bytes finais. Não se afirma um agregado com runtime integralmente inalterado. Não se afirma certificação estrutural global, fabricação ou WPS. Nenhuma publicação ou implantação foi feita.
+SRC1 mantém a geometria original e a força real de −200 kN: falha local por escoamento, η=1,079466667, com vínculos reais de rotação e do receptor W ainda não comprovados. Não se fabricam travamentos nem se usa a distância à extremidade como vão lateral. Casos sintéticos ou declarações de teste não comprovam condições físicas reais.
 
-A compressão exige a geometria e os vínculos definidos no contrato. Os vetores assinados das forças reais são preservados; o mínimo de 45 kN é tratado como caso de dimensionamento explícito das interfaces soldadas.
+A suíte integral executou 5,566 casos distintos: 5,565 aprovados e 1 falha herdada pela ausência do oráculo externo histórico de contato dos parafusos, sem substituição ou contagem como aprovação. Zero erros e pulados, zero regressões inesperadas. Replays independentes e verificações de distribuição usam unidades separadas e não são somados. Consulte docs/VALIDATION0937.json e docs/ERRATA_NBR8800_0937.md.
 
-## Exemplos e auditoria
+## Arquivos opcionais
 
-O APP é independente. Projetos JSON nativos, resultados, testes, oráculos, geradores e verificações executáveis permanecem incorporados. O companheiro EXEMPLOS 0.9.35 contém renderizações atuais validadas; AUDITORIA 0.9.35 conserva capturas forenses da revisão independente. Os companheiros opcionais históricos 0.9.34 permanecem inalterados, com suas versões originais, e não são reenviados. Nenhum companheiro é necessário para execução ou verificação portátil atual.
+O APP é independente. Projetos JSON nativos, resultados, testes, oráculos numéricos, geradores, replays executáveis, referências textuais e evidência integral da suíte atual permanecem incorporados. EXEMPLOS contém renderizações úteis atuais e somente os arquivos históricos exatos eventualmente relocados, identificados por versão original e hash. Companheiros antigos não foram reenviados ou renomeados. AUDITORIA é um resumo verificável com recibos e evidência reproduzível; não contém todas as capturas brutas. O índice exato docs/REFERENCE_PAGE_INDEX0937.json informa quais imagens de páginas de referência permanecem no APP e quais ficam somente nos originais locais preservados; não há pacote externo separado dessas imagens.
 
-Para estudar o código, extraia uma cópia separada de codigo_lro.zip. docs/DISTRIBUTION_SPLIT0935.json registra os caminhos e hashes das relocações históricas aprovadas. docs/release_manifest.json e verificar_pacote.py conferem o conteúdo distribuído. Registros anteriores foram preservados em docs/packaging_history/.
+Para estudar o código, extraia uma cópia separada de codigo_lro.zip. docs/DISTRIBUTION_SPLIT0937.json registra as relocações; docs/release_manifest.json e verificar_pacote.py verificam o conteúdo distribuído. Não houve publicação, push ou deploy. Nenhum resultado constitui aprovação global, comprovação dos vínculos reais ou autorização de fabricação.
