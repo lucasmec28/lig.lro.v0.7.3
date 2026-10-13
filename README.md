@@ -1,19 +1,19 @@
-# LRO Ligações 0.9.37-one-root-compression-dev
+# LRO Ligações 0.9.41-mre12-end-plate-dev
 
-Ligação soldada 2L-T com uma raiz na mesa W: compressão axial local condicionada, mantendo as 19 rotas.
+Esta versão acrescenta a ligação rígida MRE1/2: chapa de topo com 12 parafusos e sem nervuras, com seis parafusos ativos em tração e seis do lado comprimido recebendo o cortante. Demanda de espessura e classificação nominal são apresentadas separadamente. A precisão nativa dos dados é preservada; a apresentação usa até duas casas decimais.
 
 ## Instalação
 
-Mantenha exatamente quatro arquivos na raiz: app.py, codigo_lro.zip, requirements.txt e README.md. Use app.py como entrada Streamlit e mantenha codigo_lro.zip compactado. Não misture versões. Reinicie após atualizar os quatro arquivos. Nenhum código é baixado durante a inicialização.
+Mantenha exatamente quatro arquivos na raiz: app.py, codigo_lro.zip, requirements.txt e README.md. Use app.py como entrada Streamlit, mantenha codigo_lro.zip compactado e reinicie após atualizar os quatro arquivos juntos. Nenhum código é baixado na inicialização.
 
-## Resultado e limites
+## Alcance e verificação
 
-SRC1 mantém a geometria original e a força real de −200 kN: falha local por escoamento, η=1,079466667, com vínculos reais de rotação e do receptor W ainda não comprovados. Não se fabricam travamentos nem se usa a distância à extremidade como vão lateral. Casos sintéticos ou declarações de teste não comprovam condições físicas reais.
+Consulte docs/END_PLATE_MRE12_0941.md e docs/qualification_mre12_0941/CONTRACT.md para o método, domínio e limites. A verificação respeita o sinal do momento e do cortante, os grupos físicos de parafusos e os comprimentos de transferência locais. Restrições, contatos, CJP e hipóteses globais permanecem condições declaradas, sem aprovação automática de condições físicas desconhecidas, da estrutura global ou de fabricação.
 
-A suíte integral executou 5,566 casos distintos: 5,565 aprovados e 1 falha herdada pela ausência do oráculo externo histórico de contato dos parafusos, sem substituição ou contagem como aprovação. Zero erros e pulados, zero regressões inesperadas. Replays independentes e verificações de distribuição usam unidades separadas e não são somados. Consulte docs/VALIDATION0937.json e docs/ERRATA_NBR8800_0937.md.
+A validação final cobre 5949 casos distintos: 5948 aprovados, uma falha herdada pela ausência do oráculo externo original de contato dos parafusos, zero erros e zero pulados. A falha não foi substituída nem contada como aprovação. Consulte docs/VALIDATION0941.json. Replays independentes, rotas de interface e testes de distribuição têm contagens separadas.
 
 ## Arquivos opcionais
 
-O APP é independente. Projetos JSON nativos, resultados, testes, oráculos numéricos, geradores, replays executáveis, referências textuais e evidência integral da suíte atual permanecem incorporados. EXEMPLOS contém renderizações úteis atuais e somente os arquivos históricos exatos eventualmente relocados, identificados por versão original e hash. Companheiros antigos não foram reenviados ou renomeados. AUDITORIA é um resumo verificável com recibos e evidência reproduzível; não contém todas as capturas brutas. O índice exato docs/REFERENCE_PAGE_INDEX0937.json informa quais imagens de páginas de referência permanecem no APP e quais ficam somente nos originais locais preservados; não há pacote externo separado dessas imagens.
+O APP é independente e retém o runtime, projetos nativos, resultados, testes, oráculos, geradores, métodos e evidência reproduzível e integral da suíte atual. EXEMPLOS reúne renderizações atuais selecionadas, identificadas pela versão e hashes reais da geração, e eventuais renderizações históricas exatamente aprovadas para respeitar o limite. As omissões herdadas permanecem nos companheiros históricos já entregues; esses companheiros não são reenviados nem renomeados. AUDITORIA contém recibos, inventários e evidência reproduzível compacta, sem alegar conter todas as capturas brutas.
 
-Para estudar o código, extraia uma cópia separada de codigo_lro.zip. docs/DISTRIBUTION_SPLIT0937.json registra as relocações; docs/release_manifest.json e verificar_pacote.py verificam o conteúdo distribuído. Não houve publicação, push ou deploy. Nenhum resultado constitui aprovação global, comprovação dos vínculos reais ou autorização de fabricação.
+Imagens de páginas de referência permanecem preservadas e indexadas em docs/REFERENCE_PAGE_INDEX0941.json, sem pacote externo dessas imagens. docs/DISTRIBUTION_SPLIT0941.json registra as omissões aprovadas exclusivamente no estágio de distribuição. docs/release_manifest.json e verificar_pacote.py conferem o conteúdo distribuído. Nenhuma publicação, upload, push ou implantação faz parte desta construção.
