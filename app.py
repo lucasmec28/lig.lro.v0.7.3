@@ -13,7 +13,7 @@ from zipfile import BadZipFile, ZipFile
 
 import streamlit as st
 
-BUNDLE_SHA256 = '162043880bdeaf49640901dd66b0c05c3a3b2eebd9f837578c3beee7a81e18de'
+BUNDLE_SHA256 = '318cf59b3a1fd3829b33e1ad2811bd2b93b6c494e627e70c78df585d43381e01'
 BUNDLE_NAME = 'codigo_lro.zip'
 
 
@@ -22,7 +22,7 @@ def prepare_code(archive_bytes, digest):
     """Uma extração privada por processo, reaproveitada nas interações da tela."""
     if sha256(archive_bytes).hexdigest() != digest:
         raise ValueError('O arquivo de código não corresponde a esta versão do app.py.')
-    holder = TemporaryDirectory(prefix='lro_ligacoes_0941-mre12-end-plate-dev_')
+    holder = TemporaryDirectory(prefix='lro_ligacoes_0944-beam-on-beam-partial-dev_')
     root = Path(holder.name)
     try:
         with ZipFile(BytesIO(archive_bytes)) as archive:
@@ -63,7 +63,7 @@ def main():
             module_file = getattr(module, '__file__', None)
             if module_file and not Path(module_file).resolve().is_relative_to(root):
                 st.error('Uma versão anterior está carregada. Reinicie o app no Streamlit '
-                         'para abrir todos os módulos da versão 0.9.41-mre12-end-plate-dev juntos.')
+                         'para abrir todos os módulos da versão 0.9.44-beam-on-beam-partial-dev juntos.')
                 st.stop()
     if str(root) not in sys.path:
         sys.path.insert(0, str(root))
