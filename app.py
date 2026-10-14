@@ -13,9 +13,9 @@ from zipfile import BadZipFile, ZipFile
 
 import streamlit as st
 
-BUNDLE_SHA256 = 'c7bc6de185ece182fad2e93d467f3101435c5df48519ba32c14a76a8b9ab7bd7'
+BUNDLE_SHA256 = 'd12f5d03cc31af172f1ea20269bb5d299f0f24dfb7fcfca9b24e4730d165b62e'
 BUNDLE_NAME = 'codigo_lro.zip'
-PACKAGE_ID = '0.9.47-apoio-direto-dg6-dev.1'
+PACKAGE_ID = '0.9.48-base-u-rotulada-dev.1'
 
 
 @st.cache_resource(show_spinner=False)
@@ -23,7 +23,7 @@ def prepare_code(archive_bytes, digest):
     """Uma extração privada por processo, reaproveitada nas interações da tela."""
     if sha256(archive_bytes).hexdigest() != digest:
         raise ValueError('O arquivo de código não corresponde a esta versão do app.py.')
-    holder = TemporaryDirectory(prefix='lro947dg6_')
+    holder = TemporaryDirectory(prefix='lro948u_')
     root = Path(holder.name)
     try:
         with ZipFile(BytesIO(archive_bytes)) as archive:
@@ -34,7 +34,7 @@ def prepare_code(archive_bytes, digest):
             archive.extractall(root)
         for name in ('app.py', 'lro/models.py', 'lro/double_cover_ui.py',
                      'lro/end_plate_ui.py', 'data/profiles.json',
-                     'lro/package_identity.py', 'lro/beam_direct_seat.py', 'lro/beam_direct_seat_ui.py'):
+                     'lro/package_identity.py', 'lro/beam_direct_seat.py', 'lro/beam_direct_seat_ui.py', 'lro/channel_base_plate.py','lro/channel_base_plate_ui.py'):
             if not (root / name).is_file():
                 raise ValueError('Arquivo obrigatório ausente: ' + name)
         identity = runpy.run_path(str(root / 'lro/package_identity.py'))

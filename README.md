@@ -1,18 +1,19 @@
-# LRO Ligações 0.9.47 apoio direto DG6 dev.1
+# LRO Ligações — 0.9.48 base U rotulada, revisão de desenvolvimento
 
-Pacote preparado e testado exclusivamente em cloud. Não houve publicação ou alteração no computador do usuário.
+Pacote completo, preparado somente em cloud. Nenhum push, deploy ou alteração no computador/OneDrive do usuário.
 
-## Uso
-Mantenha os quatro arquivos juntos: app.py, codigo_lro.zip, requirements.txt e README.md.
-Instale as dependências de requirements.txt e execute: streamlit run app.py
-O bootstrap confere SHA-256 e identidade do código; reinicie o processo ao trocar de versão.
-Selecione “Viga sobre viga — apoio direto entre mesas”. O JSON circular da revisão 0.9.46 local dev.2 é importado com validação e preservação das entradas; novos arquivos usam 0.9.47.
+## Quatro arquivos na raiz
 
-## Correção
-O resultado local deixa de ser perpetuamente pendente por flags fixas. ATENDE depende das verificações reais de resistência, geometria e especificação de contato. Falhas continuam bloqueando o resultado.
-Rota ASI DG6 A1(c), Fig.A4 e A3: Va/Vb/Vc/Vd para a viga superior; Vc/Vd para o apoio local na inferior. Capacidades Va/Vb inferiores são mostradas sem comparação com a reação isolada: a demanda global do painel pertence ao projeto estrutural.
-Caso importado: R=25,5953565 kN; capacidade local superior119,558334 kN; inferior178,599600 kN. Materiais das entradas preservados. A3 sem crédito de enrijecedores. Par 8x60 construtivo; sem R/4 como cortante dos parafusos.
-NBR 8800 5.7.3/5.7.4 é suplemento separado, demanda max(R,45 kN), sem misturar fatores com ASI. O resultado ASI não é declaração de conformidade integral com NBR.
-A memória Word é gerada com os dados atuais, equações, resultados, geometria e limites. Projeto global, estabilidade, vínculos e execução permanecem responsabilidade do engenheiro e da obra; não são falhas locais fabricadas pelo programa.
+Mantenha `app.py`, `codigo_lro.zip`, `requirements.txt` e `README.md` juntos. Instale as dependências de requirements.txt e execute `streamlit run app.py`. Não descompacte codigo_lro.zip: a entrada verifica seu hash e extrai uma cópia privada. Reinicie o processo ao trocar versão.
 
-Este é um instrumento de cálculo local em desenvolvimento, sem substituir revisão e responsabilidade técnica do projeto.
+## Novidade
+
+Família separada “Placa de base · U rotulada”: um U sobre concreto, quatro barras, N/V sem momento externo. Centroide assimétrico, contato integral, placa com mecanismo U de compressão, balanços genéricos de tração, allowance 1,4 de alavanca nas barras, solda própria e integração com ancoragem ACI existente. Placa e pilar têm aços independentes. JSON, croqui, Word e CSV usam a mesma geometria/resultados; seis colunas e duas casas decimais.
+
+É uma adaptação documentada de Ranzi–Kneen (2002), não substituição de U na rotina I/H e não declaração de cálculo literal AS4100. Consulte docs/channel_base_0948/METODO_E_DOMINIO.md dentro do código. Compressão parcial, chave e torção dos chumbadores não são cobertas. V por barras exige ey=0. O allowance de alavanca não é uma solução de contato/deformações local.
+
+O U152×12,2 mantém tf médio e centroide reais. T=111,125 mm é referência Nucor C6×8.2; sua aplicação à série/peça fornecida precisa ser confirmada. A mínima espessura real da mesa é uma entrada separada inicialmente pendente. Exemplos são dados de teste, não cargas ou detalhes aprovados de uma obra.
+
+As famílias anteriores e o apoio direto DG6 da .47 foram mantidos. A identidade global do pacote é 0.9.48-base-u-rotulada-dev.1; schemas/componentes legados conservam versões próprias. Registros históricos no código não substituem a evidência de testes desta revisão, entregue separadamente.
+
+Resultados locais e pendências são explícitos. Estabilidade global, bloco armado/fundação e certificação de rigidez/rotação pertencem ao projeto do engenheiro. Testes de software não representam aprovação estrutural.
