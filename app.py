@@ -1,4 +1,4 @@
-"""LRO Ligações: entrada para GitHub/Streamlit com arquivos somente na raiz.
+"""LRO Ligações: entrada local Streamlit com arquivos na raiz.
 
 O código-fonte completo está em codigo_lro.zip, que deve acompanhar este arquivo.
 Nenhum código é baixado da internet na inicialização do aplicativo.
@@ -13,8 +13,9 @@ from zipfile import BadZipFile, ZipFile
 
 import streamlit as st
 
-BUNDLE_SHA256 = '318cf59b3a1fd3829b33e1ad2811bd2b93b6c494e627e70c78df585d43381e01'
+BUNDLE_SHA256 = '0342b89bc14e97f174f3a7c569cc3d8c12cc5a4db1c8d30fe04c68d104ffd6b1'
 BUNDLE_NAME = 'codigo_lro.zip'
+PACKAGE_ID = '0.9.46-apoio-direto-verificacoes-locais-revisao-dev.2'
 
 
 @st.cache_resource(show_spinner=False)
@@ -22,7 +23,7 @@ def prepare_code(archive_bytes, digest):
     """Uma extração privada por processo, reaproveitada nas interações da tela."""
     if sha256(archive_bytes).hexdigest() != digest:
         raise ValueError('O arquivo de código não corresponde a esta versão do app.py.')
-    holder = TemporaryDirectory(prefix='lro_ligacoes_0944-beam-on-beam-partial-dev_')
+    holder = TemporaryDirectory(prefix='lro946review_')
     root = Path(holder.name)
     try:
         with ZipFile(BytesIO(archive_bytes)) as archive:
@@ -32,9 +33,13 @@ def prepare_code(archive_bytes, digest):
                     raise ValueError('Caminho inválido no arquivo de código.')
             archive.extractall(root)
         for name in ('app.py', 'lro/models.py', 'lro/double_cover_ui.py',
-                     'lro/end_plate_ui.py', 'data/profiles.json'):
+                     'lro/end_plate_ui.py', 'data/profiles.json',
+                     'lro/package_identity.py', 'lro/beam_direct_seat.py', 'lro/beam_direct_seat_ui.py'):
             if not (root / name).is_file():
                 raise ValueError('Arquivo obrigatório ausente: ' + name)
+        identity = runpy.run_path(str(root / 'lro/package_identity.py'))
+        if identity.get('PACKAGE_ID') != PACKAGE_ID:
+            raise ValueError('Identidade do pacote de revisao incompativel.')
     except Exception:
         holder.cleanup()
         raise
@@ -44,8 +49,8 @@ def prepare_code(archive_bytes, digest):
 def main():
     archive_path = Path(__file__).resolve().with_name(BUNDLE_NAME)
     if not archive_path.is_file():
-        st.error('Falta codigo_lro.zip. Envie esse arquivo, ainda compactado, '
-                 'ao GitHub na mesma pasta de app.py e requirements.txt.')
+        st.error('Falta codigo_lro.zip. Descompacte o pacote completo e mantenha esse ZIP '
+                 'na mesma pasta de app.py e requirements.txt.')
         st.stop()
     try:
         data = archive_path.read_bytes()
@@ -54,7 +59,7 @@ def main():
         root, holder = prepare_code(data, BUNDLE_SHA256)
     except (OSError, ValueError, BadZipFile) as exc:
         st.error('Não foi possível abrir o pacote LRO: ' + str(exc))
-        st.info('Reenvie os quatro arquivos do mesmo ZIP de instalação e reinicie o app.')
+        st.info('Use os arquivos da mesma revisao e reinicie o app local.')
         st.stop()
 
     # Uma atualização deve iniciar um novo processo, sem misturar módulos antigos.
@@ -63,7 +68,7 @@ def main():
             module_file = getattr(module, '__file__', None)
             if module_file and not Path(module_file).resolve().is_relative_to(root):
                 st.error('Uma versão anterior está carregada. Reinicie o app no Streamlit '
-                         'para abrir todos os módulos da versão 0.9.44-beam-on-beam-partial-dev juntos.')
+                         'para abrir todos os modulos desta revisao juntos.')
                 st.stop()
     if str(root) not in sys.path:
         sys.path.insert(0, str(root))
