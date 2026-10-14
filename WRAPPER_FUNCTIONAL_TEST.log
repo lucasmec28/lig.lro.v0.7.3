@@ -1,0 +1,12 @@
+STAGE exact full wrapper and current local route
+2026-10-14 11:44:59.360 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-14 11:44:59.360 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+INITIAL errors []
+INITIAL selectboxes [('bdsl_beam_name', 'W 360 x 39,0'), ('bdsl_support_name', 'W 410 x 38,8'), ('bdsl_beam_steel', 'ASTM A572 Gr.50'), ('bdsl_support_steel', 'ASTM A572 Gr.50'), ('bdsl_stiffener_steel', 'ASTM A36'), ('connection_family', 'Viga sobre viga — apoio direto entre mesas'), ('nav_guide_interface', 'all'), ('nav_guide_model', 'all'), ('nav_guide_candidate', 'none'), ('bdsl_example', 'Caso informado — V=2610 kgf ELU, N=My=Tz=0 — apoio direto')]
+STAGE actual native upload, precision and recalculation
+STAGE actual legacy family, old JSON and alignment interface
+LEGACY labels ['Gerar memória viga sobre viga', 'Abrir família', 'Limpar filtros', 'Usar exemplo viga sobre viga', 'Carregar viga sobre viga'] ['Salvar projeto viga sobre viga .json', 'Baixar croquis viga sobre viga .svg']
+STAGE return to current local family and exact payload manifest
+{"outcome": "PASS", "assertions_executed": 44, "AppTest_runs": 9, "payload_sha256": "0342b89bc14e97f174f3a7c569cc3d8c12cc5a4db1c8d30fe04c68d104ffd6b1", "wrapper_sha256": "cf2131a6a1601ce8d4b102d3f3959c29849b612ad406af1d8d5202dcc2de2722", "package_id": "0.9.46-apoio-direto-verificacoes-locais-revisao-dev.2", "core_sha256": "f9ecaaf6855f1dfe6a1903e40a48f2917b1b8bfc3ddd8c772b9035bc5ada62e6", "legacy_core_sha256": "9d3d52abe7eb3533b4def96c517056ab678b47470dcd14bbb40f3b1d665180f8", "scope": "Exact packaged wrapper, dispatcher, actual JSON upload/download, current and legacy routes, precision, recalc and alignment; not physical engineering approval", "engineering_approved": false, "global_pass": false}
+
+PROCESS_EXIT=0

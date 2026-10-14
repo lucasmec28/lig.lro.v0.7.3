@@ -1,0 +1,13 @@
+{
+  "outcome": "PASS",
+  "assertions_executed": 44,
+  "AppTest_runs": 9,
+  "payload_sha256": "0342b89bc14e97f174f3a7c569cc3d8c12cc5a4db1c8d30fe04c68d104ffd6b1",
+  "wrapper_sha256": "cf2131a6a1601ce8d4b102d3f3959c29849b612ad406af1d8d5202dcc2de2722",
+  "package_id": "0.9.46-apoio-direto-verificacoes-locais-revisao-dev.2",
+  "core_sha256": "f9ecaaf6855f1dfe6a1903e40a48f2917b1b8bfc3ddd8c772b9035bc5ada62e6",
+  "legacy_core_sha256": "9d3d52abe7eb3533b4def96c517056ab678b47470dcd14bbb40f3b1d665180f8",
+  "scope": "Exact packaged wrapper, dispatcher, actual JSON upload/download, current and legacy routes, precision, recalc and alignment; not physical engineering approval",
+  "engineering_approved": false,
+  "global_pass": false
+}

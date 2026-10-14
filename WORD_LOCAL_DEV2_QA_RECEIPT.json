@@ -1,0 +1,96 @@
+{
+  "verified_utc": "2026-10-14T14:37:06.422090+00:00",
+  "document": "C:\\Users\\lucas\\Documents\\Codex\\2026-10-14\\task\\delivery-full\\MEMORIA_APOIO_DIRETO_0.9.46_LOCAL_DEV2.docx",
+  "docx_sha256": "221ab752ab16d27778c81f57343857d7254a933c73fbc5636b813512441321af",
+  "renderer": "Microsoft Word COM 16.0.20430 ExportAsFixedFormat, Poppler pdftoppm 130 dpi",
+  "canonical_renderer": "Attempted on dev2; soffice.exe unavailable; error in canonical-render.log",
+  "pdf_sha256": "0cea53616a924eb9dd36ea8eb6b0420b3bf7b2b100e2559933aec6f5ba5e5189",
+  "structure_and_content_checks": {
+    "local_dev2_component": true,
+    "no_old_capacity_or_slotted_content": true,
+    "no_stiffener_resistance_credit": true,
+    "four_local_web_capacities": true,
+    "actual_elu_and_separate_minimum": true,
+    "constructive_scope_before_positive_results": true,
+    "external_four_metres_not_span": true,
+    "external_bracing_not_nodal_proof": true,
+    "w360_interface_clause_preserved": true,
+    "necessary_local_condition_not_generic_global": true,
+    "external_5_7_5_and_spacing_6_3_9_referenced": true,
+    "external_unknown_not_local_failure": true,
+    "rotation_and_axial_release_limits": true,
+    "global_and_engineering_approval_false": true,
+    "independent_test_count_matches_document": true,
+    "independent_tested_core_still_current": true,
+    "no_replacement_or_missing_symbols": true,
+    "title_uses_title_style": true,
+    "no_paragraph_rules": true,
+    "two_explicit_page_breaks": true,
+    "one_original_diagram_with_alt_text": true,
+    "no_fixed_table_row_heights": true,
+    "table_cells_have_visible_borders": true,
+    "page_number_field": true,
+    "pdf_three_pages": true,
+    "page_1_content_present": true,
+    "page_1_is_a4": true,
+    "page_2_content_present": true,
+    "page_2_is_a4": true,
+    "page_3_content_present": true,
+    "page_3_is_a4": true,
+    "all_pages_visually_inspected": true,
+    "render_did_not_mutate_docx": true,
+    "renderer_success": true,
+    "prior_docx_immutable": true
+  },
+  "page_count": 3,
+  "pages": [
+    {
+      "page": 1,
+      "png": "C:\\Users\\lucas\\Documents\\Codex\\2026-10-14\\task\\word-qa-dev2\\word-render\\page-1.png",
+      "png_sha256": "0a3c0b091b0cbbe9d6008622c84e2e6a883f55838d5ede6da602b666797a4930",
+      "pixels": [
+        1075,
+        1521
+      ]
+    },
+    {
+      "page": 2,
+      "png": "C:\\Users\\lucas\\Documents\\Codex\\2026-10-14\\task\\word-qa-dev2\\word-render\\page-2.png",
+      "png_sha256": "0f18129d2f70261ae25f02b1a0173fe656a43d5d07e497faf9a81daced3737e7",
+      "pixels": [
+        1075,
+        1521
+      ]
+    },
+    {
+      "page": 3,
+      "png": "C:\\Users\\lucas\\Documents\\Codex\\2026-10-14\\task\\word-qa-dev2\\word-render\\page-3.png",
+      "png_sha256": "eb462951539982bceac65596c0b55f7cc00355604a3cb67f15bdc19969d6a4f0",
+      "pixels": [
+        1075,
+        1521
+      ]
+    }
+  ],
+  "visual_review": {
+    "owner": "/root/coluneta_diagnosis",
+    "pages": [
+      1,
+      2,
+      3
+    ],
+    "state": "All original PNG pages individually inspected for clipping, overlaps, readable text and table integrity"
+  },
+  "scope": "Four local web modes, nominal geometry and external reported premises; no stiffener resistance credit",
+  "independent_software_tests_passed": 64,
+  "engineering_approval": false,
+  "remaining_conditions": [
+    "W360 own support-interface condition per5.7.8 by global engineer",
+    "Executive detail and real hardware, contact, tolerance and assembly confirmation",
+    "Real support rotation and axial-release compatibility if required by global model"
+  ],
+  "prior_docx_preserved": {
+    "path": "C:\\Users\\lucas\\Documents\\Codex\\2026-10-14\\task\\delivery-full\\MEMORIA_APOIO_DIRETO_0.9.46_REVISAO.docx",
+    "sha256": "96e8fc5e4758ca2a77b0ede4d1775d77d96083aaf4e0c12d6396e7d22bcc988a"
+  }
+}

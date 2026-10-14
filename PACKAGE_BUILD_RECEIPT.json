@@ -1,0 +1,23 @@
+{
+  "package_id": "0.9.46-apoio-direto-verificacoes-locais-revisao-dev.2",
+  "base_legacy_model_version": "0.9.44-beam-on-beam-partial-dev",
+  "payload_sha256": "0342b89bc14e97f174f3a7c569cc3d8c12cc5a4db1c8d30fe04c68d104ffd6b1",
+  "payload_members": 2719,
+  "payload_crc": "PASS",
+  "base_manifest_preserved": true,
+  "overlay_source_verifier": "PASS",
+  "ignored_runtime_cache_parts": [
+    "__pycache__",
+    "test-temp",
+    ".pytest_cache",
+    "*.pyc",
+    "*.pyo"
+  ],
+  "word_sha256": "221ab752ab16d27778c81f57343857d7254a933c73fbc5636b813512441321af",
+  "complete_source_package": true,
+  "wrapper_functional_test": "PASS",
+  "published": false,
+  "wrapper_assertions": 44,
+  "wrapper_AppTest_runs": 9,
+  "prior_harness_attempt": "Route label character corrected in test harness only; production payload unchanged"
+}
