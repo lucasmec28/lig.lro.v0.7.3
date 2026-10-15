@@ -1,4 +1,4 @@
-# LRO 0.9.55 dev.1 — apoios locais, revisão privada
+# LRO 0.9.56 dev.1 — emenda W e deslizamento, revisão privada
 
 Extraia os quatro arquivos juntos. Instale `pip install -r requirements.txt` e execute `streamlit run app.py`. Nenhum código é baixado na inicialização.
 
@@ -44,3 +44,21 @@ A1(e) NÃO foi fechado ou alterado nesta etapa: chapa de topo e introdução da 
 Antes do empacotamento: 66 testes focados e 45 subtestes passaram, além da UI herdada; um teste histórico que exigia B9 sempre incompleto foi explicitamente substituído. PNG e seis páginas Word foram renderizados e inspecionados; força no desenho usa duas casas decimais. Testes adicionais verificam este ZIP e o launcher após extração. Não se afirma suíte integral nem aprovação estrutural.
 
 Extraia os quatro arquivos juntos; não misture revisões. O pacote contém manifesto novo verificável com python verificar_pacote.py na fonte extraída. Preserva a base e todos os pacotes anteriores. Empacotamento local de revisão privada; sem upload, publicação, push, deploy ou acesso ao computador do usuário.
+
+## Revisão 0.9.56: deslizamento da emenda W convencional
+
+A opção existente de não deslizamento agora avalia ELS separadamente do ELU, conforme NBR 8800:2024, 6.3.4. O usuário deve selecionar a superfície real e informar N/M/V da combinação rara de serviço, ou selecionar explicitamente 70% das ações ELU normais reais. Essa alternativa não usa pisos sintéticos nem combinações excepcionais. Não há dupla majoração.
+
+Domínio: mesmos perfis e geometria qualificada da emenda convencional, ações no plano, furos redondos padrão, parafusos A325/A490 M16/M20/M24/M30 com protensão mínima da Tabela 19. Não abrange abertura fora do plano, ação dinâmica/fadiga, furos alargados/alongados, calços, superfície pintada ensaiada ou estado de montagem desconhecido presumido. Talas estruturais não são calços. Há dois planos na alma e nas mesas com talas internas; apenas um na mesa com tala externa única. Pontas são verificadas separadamente, sem somar capacidades em série.
+
+Ff,Rk=0,80 μ Ce FTb ns, com Ce=1 e tração axial do parafuso nula apenas neste modelo nominal no plano. Não se confunde esforço longitudinal da mesa com tração axial no parafuso. A opção de tala externa única preserva o modelo existente e o domínio estático de emendas restringidas. Execução exige conjuntos conformes, contato firme, protensão, arruelas e inspeção conforme 6.8; o software não certifica a montagem.
+
+JSON schema 3 mantém projetos antigos com ELS pendente quando faltam entradas; não presume superfície ou solicitações. Sem a opção ELS, os resultados anteriores são preservados. Geometria, resistência ELU, ELS e verificações externas permanecem distinguíveis. ELS atendido nunca aprova resistência ou geometria reprovadas. A1(e), endplates, talas perfuradas, U2, apoios e viga sobre viga não foram alterados.
+
+Casos à mão, negativos, migração, JSON, UI, Word e preservação foram testados e o núcleo revisado independentemente. Os resultados de testes são evidência de software, não aprovação estrutural. Consulte o recibo da revisão para números finais da regressão.
+
+## Correção geométrica U/2 nesta mesma revisão
+
+A interferência das arruelas agora é calculada contra os obstáculos locais reais da seção U, soldas e bordas da placa. O envelope retangular global das pontas das mesas não é usado como parede fictícia sobre o eixo livre da abertura. Dimensões reais das arruelas quadradas são preservadas. A correção foi revisada independentemente; não muda o cálculo resistente da placa, raios, posições reais ou prying. O arranjo de quatro barras foi comparado em 54 casos idênticos. Exemplos reais do usuário permanecem apenas na QA privada e não são incluídos no pacote.
+
+Resultado final da revisão integrada: 166 testes herdados da emenda passaram; 63 testes ELS/B9 passaram; 142 testes U passaram. A instabilidade inicial de importação/tabela não reapareceu na execução completa final e permanece registrada como limite da automação UI. Os asserts Word foram atualizados exclusivamente para conferir a mesma conclusão em português em vez da linha de código interno removida por solicitação de apresentação. Nenhuma hipótese resistente foi alterada para satisfazer testes.

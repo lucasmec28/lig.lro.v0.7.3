@@ -13,9 +13,9 @@ from zipfile import BadZipFile, ZipFile
 
 import streamlit as st
 
-BUNDLE_SHA256 = 'c994cb24efc03ebc560dbe4d3ff8a6cc85ba16d6f13e36b2e71d68952e91cde2'
+BUNDLE_SHA256 = 'aaed54bc1e5049d27a0c6d66b5370724d58bcd5b8307e32872a2891fc660c66f'
 BUNDLE_NAME = 'codigo_lro.zip'
-PACKAGE_ID = '0.9.55-bolted-seat-dev.1'
+PACKAGE_ID = '0.9.56-w-splice-slip-dev.1'
 
 
 @st.cache_resource(show_spinner=False)
@@ -23,7 +23,7 @@ def prepare_code(archive_bytes, digest):
     """Uma extração privada por processo, reaproveitada nas interações da tela."""
     if sha256(archive_bytes).hexdigest() != digest:
         raise ValueError('O arquivo de código não corresponde a esta versão do app.py.')
-    holder = TemporaryDirectory(prefix='lro955boltedseat_')
+    holder = TemporaryDirectory(prefix='lro956wslip_')
     root = Path(holder.name)
     try:
         with ZipFile(BytesIO(archive_bytes)) as archive:
@@ -34,7 +34,7 @@ def prepare_code(archive_bytes, digest):
             archive.extractall(root)
         for name in ('app.py', 'lro/models.py', 'lro/double_cover_ui.py',
                      'lro/end_plate_ui.py', 'data/profiles.json',
-                     'lro/bolted_seat.py','lro/seated_variants.py','lro/seated_variants_ui.py','lro/seated_variants_drawing.py','lro/seated_variants_report.py', 'lro/package_identity.py', 'lro/beam_direct_seat.py', 'lro/beam_direct_seat_ui.py', 'lro/beam_direct_seat_presentation.py', 'lro/beam_direct_seat_drawing.py', 'lro/beam_direct_seat_report.py', 'lro/channel_upper_washer.py','lro/channel_base_plate.py','lro/channel_base_plate_ui.py','lro/channel_catalog.py','data/gerdau_u.json'):
+                     'lro/w_splice_slip.py','lro/w_splice_conventional.py','lro/bolted_seat.py','lro/seated_variants.py','lro/seated_variants_ui.py','lro/seated_variants_drawing.py','lro/seated_variants_report.py', 'lro/package_identity.py', 'lro/beam_direct_seat.py', 'lro/beam_direct_seat_ui.py', 'lro/beam_direct_seat_presentation.py', 'lro/beam_direct_seat_drawing.py', 'lro/beam_direct_seat_report.py', 'lro/channel_upper_washer.py','lro/channel_base_plate.py','lro/channel_base_plate_ui.py','lro/channel_catalog.py','data/gerdau_u.json'):
             if not (root / name).is_file():
                 raise ValueError('Arquivo obrigatório ausente: ' + name)
         identity = runpy.run_path(str(root / 'lro/package_identity.py'))
