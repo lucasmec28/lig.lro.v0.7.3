@@ -13,9 +13,9 @@ from zipfile import BadZipFile, ZipFile
 
 import streamlit as st
 
-BUNDLE_SHA256 = 'aaed54bc1e5049d27a0c6d66b5370724d58bcd5b8307e32872a2891fc660c66f'
+BUNDLE_SHA256 = '915e3f87c1aa2f6efff30bc6db9cd63c4f585c9d2e3f1e3145ff21eb78ffdbc2'
 BUNDLE_NAME = 'codigo_lro.zip'
-PACKAGE_ID = '0.9.56-w-splice-slip-dev.1'
+PACKAGE_ID = '0.9.59-endplate-sci-dev.1'
 
 
 @st.cache_resource(show_spinner=False)
@@ -23,7 +23,7 @@ def prepare_code(archive_bytes, digest):
     """Uma extração privada por processo, reaproveitada nas interações da tela."""
     if sha256(archive_bytes).hexdigest() != digest:
         raise ValueError('O arquivo de código não corresponde a esta versão do app.py.')
-    holder = TemporaryDirectory(prefix='lro956wslip_')
+    holder = TemporaryDirectory(prefix='lro958audit_')
     root = Path(holder.name)
     try:
         with ZipFile(BytesIO(archive_bytes)) as archive:
