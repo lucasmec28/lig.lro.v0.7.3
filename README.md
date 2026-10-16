@@ -1,3 +1,21 @@
+# LRO Ligações 0.9.71 — abertura direta pelo catálogo
+
+Pacote `0.9.71-abertura-direta-catalogo-dev.1`. A foto de cada cartão das 26 famílias abre seu formulário nativo diretamente, assim como o botão **Abrir ligação**. O cartão da família já aberta usa **Ver ligação atual** e preserva o projeto em andamento. O escopo fica em uma informação secundária do cartão; consultar essa informação não abre nem muda a família.
+
+A seleção exata de família continua disponível: mudar a opção apenas prepara a escolha, e o botão superior a abre. Os filtros e o retorno ao catálogo não reconfiguram o projeto. As miniaturas continuam sendo exemplos de presets, não desenhos nem resultados do projeto atual.
+
+Esta revisão altera somente a navegação do catálogo e sua identificação de pacote. Motores, formulários nativos, renderizadores, catálogos estruturais, exemplos e miniaturas existentes permanecem iguais à revisão 0.9.70. O componente local da foto transmite apenas a identificação da família e uma sequência de evento. O componente `lro.models.VERSION` continua `0.9.44-beam-on-beam-partial-dev`. As proteções contra entradas inválidas das emendas W são preservadas.
+
+## Executar o pacote compacto
+
+Descompacte o ZIP externo e mantenha juntos os quatro arquivos: `app.py`, `codigo_lro.zip`, `requirements.txt` e `README.md`. Com as dependências de `requirements.txt` disponíveis, execute `streamlit run app.py`. Não é necessário descompactar `codigo_lro.zip` para usar a aplicação. Ao atualizar de revisão, reinicie o processo Streamlit para evitar mistura de módulos.
+
+O carregador confere o SHA-256, os caminhos internos, os arquivos essenciais e a identidade do pacote. A distribuição compacta preserva byte a byte os módulos, dados, exemplos e documentos de método. Testes, caches e evidências históricas volumosas ficam na fonte completa. Consulte `docs/DISTRIBUICAO_COMPACTA0971.md` dentro do ZIP interno. O manifesto atual é criado apenas na distribuição; os manifestos históricos permanecem inalterados. Para uma verificação independente, extraia o ZIP interno em outra pasta e execute `python verificar_pacote.py` nessa pasta.
+
+Revisão local de desenvolvimento, sem publicação, push ou deploy. A evidência AppTest é funcional, sem validação visual em navegador. Testes de software não aprovam estruturalmente um projeto. As limitações dos métodos continuam aplicáveis.
+
+## Histórico preservado
+
 # LRO Ligações 0.9.70 — catálogo visual azul-marinho
 
 Pacote `0.9.70-catalogo-marinho-dev.1`. O catálogo visual opcional organiza as 26 famílias existentes por interface, modelo, grupo e busca. Selecionar uma miniatura apenas prepara a escolha; abrir a família é uma ação explícita. Os formulários de cálculo e os desenhos do projeto atual continuam sendo os nativos de cada família. As miniaturas são exemplos de presets, não resultados do projeto atual.
