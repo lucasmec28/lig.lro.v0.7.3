@@ -13,9 +13,9 @@ from zipfile import BadZipFile, ZipFile
 
 import streamlit as st
 
-BUNDLE_SHA256 = '6f53b7fb510a43816e1abcafb0dfef1b0d5b7ee446c81c518b31efb1617eb30a'
+BUNDLE_SHA256 = '6cdac640fb341062db6df47cb8cb00d9ee529cf8b629ae058af1de938dc89816'
 BUNDLE_NAME = 'codigo_lro.zip'
-PACKAGE_ID = '0.9.71-abertura-direta-catalogo-dev.1'
+PACKAGE_ID = '0.9.72-candidatos-r016-dev.1'
 
 
 @st.cache_resource(show_spinner=False)
@@ -23,7 +23,7 @@ def prepare_code(archive_bytes, digest):
     """Uma extração privada por processo, reaproveitada nas interações da tela."""
     if sha256(archive_bytes).hexdigest() != digest:
         raise ValueError('O arquivo de código não corresponde a esta versão do app.py.')
-    holder = TemporaryDirectory(prefix='lro971catalogue_')
+    holder = TemporaryDirectory(prefix='lro972candidates_')
     root = Path(holder.name)
     try:
         with ZipFile(BytesIO(archive_bytes)) as archive:
@@ -41,9 +41,10 @@ def prepare_code(archive_bytes, digest):
                 raise ValueError('Arquivo de código corrompido.')
             archive.extractall(root)
         for name in ('app.py', 'lro/models.py', 'lro/double_cover_ui.py',
+                     'lro/double_angle_candidates.py', 'lro/double_angle_candidates_ui.py',
                      'lro/guided_selection.py', 'lro/catalogue_ui.py', 'lro/visual_identity.py',
                      'lro/catalogue_image.py', 'data/catalogue_image_component/index.html',
-                     'data/catalogue_native.json', 'docs/CATALOG_SCOPE0971_MANIFEST.json',
+                     'data/catalogue_native.json', 'docs/CATALOG_SCOPE0972_MANIFEST.json',
                      'lro/end_plate_ui.py', 'data/profiles.json',
                      'lro/w_splice_slip.py','lro/w_splice_conventional.py','lro/bolted_seat.py','lro/seated_variants.py','lro/seated_variants_ui.py','lro/seated_variants_drawing.py','lro/seated_variants_report.py', 'lro/package_identity.py', 'lro/beam_direct_seat.py', 'lro/beam_direct_seat_ui.py', 'lro/beam_direct_seat_presentation.py', 'lro/beam_direct_seat_drawing.py', 'lro/beam_direct_seat_report.py', 'lro/channel_upper_washer.py','lro/channel_base_plate.py','lro/channel_base_plate_ui.py','lro/channel_catalog.py','data/gerdau_u.json'):
             if not (root / name).is_file():

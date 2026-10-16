@@ -1,3 +1,23 @@
+# LRO Ligações 0.9.72 — sugestões opcionais R016
+
+Pacote `0.9.72-candidatos-r016-dev.1`. A família de cantoneiras duplas R016 ganha uma busca opcional de sugestões de detalhamento, limitada ao gabarito atual L76×76×6,4/g45 ou L102×102×8/g65. A busca usa o avaliador R016 existente e não troca perfil, aço, ações, raio, sentido, gabarito nem hipóteses de montagem.
+
+Buscar e escolher uma prévia não alteram o projeto, o cálculo principal nem seus arquivos. **Aplicar sugestão** é uma ação explícita: transfere o detalhe escolhido aos campos nativos, preserva o projeto anterior em JSON e recalcula resultado, desenho e memória pelo fluxo existente. **Restaurar projeto anterior** volta aos dados preservados. A sugestão também pode ser baixada separadamente sem aplicação. Entradas alteradas depois da busca exigem uma nova busca antes de aplicar.
+
+A ordem é menor comprimento no mesmo gabarito, menor total de parafusos e menor diâmetro, somente no conjunto finito pesquisado. Não é ótimo global nem comparação de massa comercial. Condições fora do domínio ou pendências do avaliador não são corrigidas silenciosamente. As distâncias aos extremos físicos do pilar acompanham as novas posições dos furos, sem deslocar esses extremos.
+
+O catálogo visual de 26 famílias, abertura direta por foto/cartão, seleção exata, tema azul-marinho e salvaguardas das emendas W continuam preservados. O componente `lro.models.VERSION` permanece `0.9.44-beam-on-beam-partial-dev`; o avaliador R016 e os renderizadores nativos não são alterados.
+
+## Executar o pacote compacto
+
+Descompacte o ZIP externo e mantenha juntos os quatro arquivos: `app.py`, `codigo_lro.zip`, `requirements.txt` e `README.md`. Com as dependências de `requirements.txt` disponíveis, execute `streamlit run app.py`. Não é necessário descompactar `codigo_lro.zip` para usar a aplicação. Ao atualizar de revisão, reinicie o processo Streamlit para evitar mistura de módulos.
+
+O carregador confere o SHA-256, os caminhos internos, os arquivos essenciais, incluindo os dois módulos de sugestões, e a identidade do pacote. A distribuição compacta preserva byte a byte os módulos, dados, exemplos e documentos de método da fonte congelada. Testes, caches e evidências históricas volumosas ficam na fonte completa. Consulte `docs/DISTRIBUICAO_COMPACTA0972.md` dentro do ZIP interno. O manifesto atual é criado apenas na distribuição; os manifestos históricos permanecem inalterados. Para uma verificação independente, extraia o ZIP interno em outra pasta e execute `python verificar_pacote.py` nessa pasta.
+
+Revisão local de desenvolvimento, sem publicação, push ou deploy. A evidência AppTest é funcional, sem validação visual em navegador. Testes de software não aprovam estruturalmente um projeto. As limitações dos métodos continuam aplicáveis.
+
+## Histórico preservado
+
 # LRO Ligações 0.9.71 — abertura direta pelo catálogo
 
 Pacote `0.9.71-abertura-direta-catalogo-dev.1`. A foto de cada cartão das 26 famílias abre seu formulário nativo diretamente, assim como o botão **Abrir ligação**. O cartão da família já aberta usa **Ver ligação atual** e preserva o projeto em andamento. O escopo fica em uma informação secundária do cartão; consultar essa informação não abre nem muda a família.
