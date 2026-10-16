@@ -1,8 +1,10 @@
-# LRO Ligações 0.9.65 — soldas de três bordas nas duas talas
+# LRO Ligações 0.9.66
+
+Soldas em três bordas também para single plate entre mesas, sob hipótese elástica de chapa rígida. Resistência da chapa completa, receptores e rotação permanecem pendentes. Cálculos convencionais e demais famílias preservados.
 
 Use juntos app.py, codigo_lro.zip, requirements.txt e README.md. Não é necessário publicar a fonte completa de desenvolvimento.
 
-## Novidades 0.9.65
+## Novidades preservadas 0.9.65
 
 Grupo elástico das soldas da nervura interna nas três bordas, com gargantas distintas e reações rastreáveis. A hipótese de chapa e apoios rígidos é explícita; resistência integral da nervura perfurada e receptores continuam pendentes.
 
@@ -34,7 +36,7 @@ O console utiliza AISC 360-16 LRFD e Manual AISC 15, detalhe de nervura recortad
 A opção SCI de end plate mantém SCI/BCSA P358 §4.7 e Eurocode UK: somente cisalhamento vertical na alma da coluna, aço S275/S355 efetivamente especificado, chapa S275 de 10/12 mm e M20 classe 8.8. Geometria Gerdau não equivale a aço EN. Referência: https://www.steelconstruction.info/images/a/a9/SCI_P358.pdf
 
 ## Distribuição e verificação
-Pacote compacto preserva todos os módulos, dados e exemplos. Fonte integral e testes são preservados separadamente. O manifesto atual confere o pacote. Consulte docs/VALIDACAO0965.md para cobertura e limites. Testes de software não equivalem à aprovação estrutural de um projeto. Pendências técnicas permanecem identificadas nos métodos correspondentes.
+Pacote compacto preserva todos os módulos, dados e exemplos. Fonte integral e testes são preservados separadamente. O manifesto atual confere o pacote. Consulte docs/VALIDACAO0966.md para cobertura e limites. Testes de software não equivalem à aprovação estrutural de um projeto. Pendências técnicas permanecem identificadas nos métodos correspondentes.
 
 ## Pacote compacto
-Distribuição de uso com os mesmos cálculos, recursos e exemplos. A suíte de testes e subpastas de evidências históricas não acompanham este ZIP; foram preservadas na fonte completa. Consulte docs/DISTRIBUICAO_COMPACTA0965.md.
+Distribuição de uso com os mesmos cálculos, recursos e exemplos. A suíte de testes e subpastas de evidências históricas não acompanham este ZIP; foram preservadas na fonte completa. Consulte docs/DISTRIBUICAO_COMPACTA0966.md.

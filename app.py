@@ -13,9 +13,9 @@ from zipfile import BadZipFile, ZipFile
 
 import streamlit as st
 
-BUNDLE_SHA256 = '2f4dce8eee7924d325b343f7afbee9e6d2621c574ee487f741a864c18e2e527e'
+BUNDLE_SHA256 = '5622d50b7306bbb47bfa9a115b006317987f4ec9541cd616d827b822e06137c4'
 BUNDLE_NAME = 'codigo_lro.zip'
-PACKAGE_ID = '0.9.65-soldas-tres-bordas-dev.1'
+PACKAGE_ID = '0.9.66-soldas-single-plate-talas-dev.1'
 
 
 @st.cache_resource(show_spinner=False)
