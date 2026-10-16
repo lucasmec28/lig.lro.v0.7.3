@@ -13,9 +13,9 @@ from zipfile import BadZipFile, ZipFile
 
 import streamlit as st
 
-BUNDLE_SHA256 = '915e3f87c1aa2f6efff30bc6db9cd63c4f585c9d2e3f1e3145ff21eb78ffdbc2'
+BUNDLE_SHA256 = '4d087d7e83f03200accf51857e9c0deb18cc201dbe8d8f350e38200d3c8c7eab'
 BUNDLE_NAME = 'codigo_lro.zip'
-PACKAGE_ID = '0.9.59-endplate-sci-dev.1'
+PACKAGE_ID = '0.9.61-nervuras-detalhamento-dev.1'
 
 
 @st.cache_resource(show_spinner=False)
