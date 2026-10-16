@@ -5,7 +5,7 @@ Nenhum código é baixado da internet na inicialização do aplicativo.
 """
 from hashlib import sha256
 from io import BytesIO
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import runpy
 import sys
 from tempfile import TemporaryDirectory
@@ -13,9 +13,9 @@ from zipfile import BadZipFile, ZipFile
 
 import streamlit as st
 
-BUNDLE_SHA256 = '5622d50b7306bbb47bfa9a115b006317987f4ec9541cd616d827b822e06137c4'
+BUNDLE_SHA256 = '4ea582b4c6d4bf5f21103980931e26c380431367e20b03b6308e3d5fadf761a5'
 BUNDLE_NAME = 'codigo_lro.zip'
-PACKAGE_ID = '0.9.66-soldas-single-plate-talas-dev.1'
+PACKAGE_ID = '0.9.70-catalogo-marinho-dev.1'
 
 
 @st.cache_resource(show_spinner=False)
@@ -23,16 +23,26 @@ def prepare_code(archive_bytes, digest):
     """Uma extração privada por processo, reaproveitada nas interações da tela."""
     if sha256(archive_bytes).hexdigest() != digest:
         raise ValueError('O arquivo de código não corresponde a esta versão do app.py.')
-    holder = TemporaryDirectory(prefix='lro958audit_')
+    holder = TemporaryDirectory(prefix='lro970catalogue_')
     root = Path(holder.name)
     try:
         with ZipFile(BytesIO(archive_bytes)) as archive:
+            seen = set()
             for item in archive.infolist():
-                path = Path(item.filename)
-                if path.is_absolute() or '..' in path.parts:
+                path = PurePosixPath(item.filename)
+                # Reject Windows paths and symlinks as well as POSIX traversal.
+                if (path.is_absolute() or '..' in path.parts
+                        or '\\' in item.filename or ':' in item.filename
+                        or not path.parts or item.filename in seen
+                        or (item.external_attr >> 16) & 0o170000 == 0o120000):
                     raise ValueError('Caminho inválido no arquivo de código.')
+                seen.add(item.filename)
+            if archive.testzip() is not None:
+                raise ValueError('Arquivo de código corrompido.')
             archive.extractall(root)
         for name in ('app.py', 'lro/models.py', 'lro/double_cover_ui.py',
+                     'lro/guided_selection.py', 'lro/catalogue_ui.py', 'lro/visual_identity.py',
+                     'data/catalogue_native.json', 'docs/CATALOG_SCOPE0970_MANIFEST.json',
                      'lro/end_plate_ui.py', 'data/profiles.json',
                      'lro/w_splice_slip.py','lro/w_splice_conventional.py','lro/bolted_seat.py','lro/seated_variants.py','lro/seated_variants_ui.py','lro/seated_variants_drawing.py','lro/seated_variants_report.py', 'lro/package_identity.py', 'lro/beam_direct_seat.py', 'lro/beam_direct_seat_ui.py', 'lro/beam_direct_seat_presentation.py', 'lro/beam_direct_seat_drawing.py', 'lro/beam_direct_seat_report.py', 'lro/channel_upper_washer.py','lro/channel_base_plate.py','lro/channel_base_plate_ui.py','lro/channel_catalog.py','data/gerdau_u.json'):
             if not (root / name).is_file():
