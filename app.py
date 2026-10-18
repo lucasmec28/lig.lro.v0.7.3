@@ -13,9 +13,9 @@ from zipfile import BadZipFile, ZipFile
 
 import streamlit as st
 
-BUNDLE_SHA256 = '6cdac640fb341062db6df47cb8cb00d9ee529cf8b629ae058af1de938dc89816'
+BUNDLE_SHA256 = '370427cbcd169b2de9a0bc58c2d05e07419b80309e51d8bde30e08d64da33e99'
 BUNDLE_NAME = 'codigo_lro.zip'
-PACKAGE_ID = '0.9.72-candidatos-r016-dev.1'
+PACKAGE_ID = '0.9.73'
 
 
 @st.cache_resource(show_spinner=False)
@@ -23,7 +23,7 @@ def prepare_code(archive_bytes, digest):
     """Uma extração privada por processo, reaproveitada nas interações da tela."""
     if sha256(archive_bytes).hexdigest() != digest:
         raise ValueError('O arquivo de código não corresponde a esta versão do app.py.')
-    holder = TemporaryDirectory(prefix='lro972candidates_')
+    holder = TemporaryDirectory(prefix='lro973coverplate_')
     root = Path(holder.name)
     try:
         with ZipFile(BytesIO(archive_bytes)) as archive:
@@ -40,11 +40,11 @@ def prepare_code(archive_bytes, digest):
             if archive.testzip() is not None:
                 raise ValueError('Arquivo de código corrompido.')
             archive.extractall(root)
-        for name in ('app.py', 'lro/models.py', 'lro/double_cover_ui.py',
+        for name in ('lro/welded_coverplate_splice.py', 'lro/welded_coverplate_ui.py', 'lro/welded_coverplate_report.py', 'lro/welded_coverplate_drawing.py', 'app.py', 'lro/models.py', 'lro/double_cover_ui.py',
                      'lro/double_angle_candidates.py', 'lro/double_angle_candidates_ui.py',
                      'lro/guided_selection.py', 'lro/catalogue_ui.py', 'lro/visual_identity.py',
                      'lro/catalogue_image.py', 'data/catalogue_image_component/index.html',
-                     'data/catalogue_native.json', 'docs/CATALOG_SCOPE0972_MANIFEST.json',
+                     'data/catalogue_native.json', 'docs/WELDED_COVERPLATE0973_MANIFEST.json',
                      'lro/end_plate_ui.py', 'data/profiles.json',
                      'lro/w_splice_slip.py','lro/w_splice_conventional.py','lro/bolted_seat.py','lro/seated_variants.py','lro/seated_variants_ui.py','lro/seated_variants_drawing.py','lro/seated_variants_report.py', 'lro/package_identity.py', 'lro/beam_direct_seat.py', 'lro/beam_direct_seat_ui.py', 'lro/beam_direct_seat_presentation.py', 'lro/beam_direct_seat_drawing.py', 'lro/beam_direct_seat_report.py', 'lro/channel_upper_washer.py','lro/channel_base_plate.py','lro/channel_base_plate_ui.py','lro/channel_catalog.py','data/gerdau_u.json'):
             if not (root / name).is_file():
@@ -76,7 +76,7 @@ def main():
 
     # Uma atualização deve iniciar um novo processo, sem misturar módulos antigos.
     for name, module in tuple(sys.modules.items()):
-        if name == 'lro' or name.startswith('lro.'):
+        if name == 'lro' or name.startswith(('lro.', 'stiffened_base_app_candidate_20261017', 'stiffened_base_kernels_candidate_20261017')):
             module_file = getattr(module, '__file__', None)
             if module_file and not Path(module_file).resolve().is_relative_to(root):
                 st.error('Uma versão anterior está carregada. Reinicie o app no Streamlit '

@@ -1,109 +1,30 @@
-# LRO Ligações 0.9.72 — sugestões opcionais R016
+LRO Ligações 0.9.73 · candidata de contato direto e composição nominal
 
-Pacote `0.9.72-candidatos-r016-dev.1`. A família de cantoneiras duplas R016 ganha uma busca opcional de sugestões de detalhamento, limitada ao gabarito atual L76×76×6,4/g45 ou L102×102×8/g65. A busca usa o avaliador R016 existente e não troca perfil, aço, ações, raio, sentido, gabarito nem hipóteses de montagem.
+Extraia os quatro arquivos na mesma pasta:
+app.py, codigo_lro.zip, requirements.txt e README.md.
 
-Buscar e escolher uma prévia não alteram o projeto, o cálculo principal nem seus arquivos. **Aplicar sugestão** é uma ação explícita: transfere o detalhe escolhido aos campos nativos, preserva o projeto anterior em JSON e recalcula resultado, desenho e memória pelo fluxo existente. **Restaurar projeto anterior** volta aos dados preservados. A sugestão também pode ser baixada separadamente sem aplicação. Entradas alteradas depois da busca exigem uma nova busca antes de aplicar.
+Instale e execute:
+python -m pip install -r requirements.txt
+python -m streamlit run app.py
 
-A ordem é menor comprimento no mesmo gabarito, menor total de parafusos e menor diâmetro, somente no conjunto finito pesquisado. Não é ótimo global nem comparação de massa comercial. Condições fora do domínio ou pendências do avaliador não são corrigidas silenciosamente. As distâncias aos extremos físicos do pilar acompanham as novas posições dos furos, sem deslocar esses extremos.
+Candidata local de revisão. Não houve publicação online. As rotas e pacotes anteriores foram preservados.
 
-O catálogo visual de 26 famílias, abertura direta por foto/cartão, seleção exata, tema azul-marinho e salvaguardas das emendas W continuam preservados. O componente `lro.models.VERSION` permanece `0.9.44-beam-on-beam-partial-dev`; o avaliador R016 e os renderizadores nativos não são alterados.
+NOVO: contato direto placa–chumbador, com EN 1993-1-8 complementar; arruela não soldada somente axial. Sem atrito, sem engaste fictício e sem deslocamento total de ELS inventado. Materiais/roscas/As reais, sem equivalência automática A36/EN. Fatores EN, NBR e ACI separados.
 
-## Executar o pacote compacto
+Seleção nas bases clássicas: Caminho resistente > Chumbadores > Contato direto placa–chumbador, EN complementar.
+Seleção nervurada: Base nervurada · N + M + V · direta · revisão.
 
-Descompacte o ZIP externo e mantenha juntos os quatro arquivos: `app.py`, `codigo_lro.zip`, `requirements.txt` e `README.md`. Com as dependências de `requirements.txt` disponíveis, execute `streamlit run app.py`. Não é necessário descompactar `codigo_lro.zip` para usar a aplicação. Ao atualizar de revisão, reinicie o processo Streamlit para evitar mistura de módulos.
+Resultado por família:
+- I/H Tipo2 interno: fecha o escopo nominal P358 quando todos os consumidores, domínios, estados ACI e ELS atendem. hp é o trecho físico da alma, nunca L.
+- I/H Tipo1 externo: fecha o escopo nominal P398 no envelope opcional da implementação e com todos os consumidores atendidos.
+- Nas bases simples, qualquer tração de haste mantém pendente a verificação axial local da arruela/porca nesta composição. Não generalizar exemplos sem tração para casos com levantamento.
+- Nervurada: fecha N+M+V no domínio publicado dos componentes normais e no envelope opcional de placa basal robusta, com verificação axial real da arruela. Mantém o benefício das nervuras em N/M e V integral na alma; não cria modelo membranar próprio. O exemplo ilustrativo de teste atende aos critérios delimitados; não corresponde a dados de uma obra do usuário.
+- U de duas/quatro hastes: componentes diretos e ACI calculados, mas transferência completa da placa ainda parcial.
 
-O carregador confere o SHA-256, os caminhos internos, os arquivos essenciais, incluindo os dois módulos de sugestões, e a identidade do pacote. A distribuição compacta preserva byte a byte os módulos, dados, exemplos e documentos de método da fonte congelada. Testes, caches e evidências históricas volumosas ficam na fonte completa. Consulte `docs/DISTRIBUICAO_COMPACTA0972.md` dentro do ZIP interno. O manifesto atual é criado apenas na distribuição; os manifestos históricos permanecem inalterados. Para uma verificação independente, extraia o ZIP interno em outra pasta e execute `python verificar_pacote.py` nessa pasta.
+O envelope basal opcional é limite conservador do aplicativo, NÃO exigência normativa geral de base nervurada. Ele não converte capacidade de tração em capacidade de V; os consumidores de V são independentes. Fora do envelope é pendência de aplicabilidade, não falha física automática.
 
-Revisão local de desenvolvimento, sem publicação, push ou deploy. A evidência AppTest é funcional, sem validação visual em navegador. Testes de software não aprovam estruturalmente um projeto. As limitações dos métodos continuam aplicáveis.
+Somente graute integral curado, furos circulares normais/controlados e sem stand-off. Contornos de furos, filetes e arruelas devem caber fisicamente. Estados uniforme, dianteiro e oposto são conferidos; falhas e pendências são exportáveis em Word/JSON. Exemplos são demonstrações, não certificados de material ou de projeto.
 
-## Histórico preservado
+Atendimento do escopo nominal delimitado não aprova fundação, bloco armado, solo, execução, estabilidade global nem rigidez rotacional. Consulte docs/DIRECT_ANCHOR_CANDIDATE.md dentro de codigo_lro.zip para requisitos e referências completos.
 
-# LRO Ligações 0.9.71 — abertura direta pelo catálogo
-
-Pacote `0.9.71-abertura-direta-catalogo-dev.1`. A foto de cada cartão das 26 famílias abre seu formulário nativo diretamente, assim como o botão **Abrir ligação**. O cartão da família já aberta usa **Ver ligação atual** e preserva o projeto em andamento. O escopo fica em uma informação secundária do cartão; consultar essa informação não abre nem muda a família.
-
-A seleção exata de família continua disponível: mudar a opção apenas prepara a escolha, e o botão superior a abre. Os filtros e o retorno ao catálogo não reconfiguram o projeto. As miniaturas continuam sendo exemplos de presets, não desenhos nem resultados do projeto atual.
-
-Esta revisão altera somente a navegação do catálogo e sua identificação de pacote. Motores, formulários nativos, renderizadores, catálogos estruturais, exemplos e miniaturas existentes permanecem iguais à revisão 0.9.70. O componente local da foto transmite apenas a identificação da família e uma sequência de evento. O componente `lro.models.VERSION` continua `0.9.44-beam-on-beam-partial-dev`. As proteções contra entradas inválidas das emendas W são preservadas.
-
-## Executar o pacote compacto
-
-Descompacte o ZIP externo e mantenha juntos os quatro arquivos: `app.py`, `codigo_lro.zip`, `requirements.txt` e `README.md`. Com as dependências de `requirements.txt` disponíveis, execute `streamlit run app.py`. Não é necessário descompactar `codigo_lro.zip` para usar a aplicação. Ao atualizar de revisão, reinicie o processo Streamlit para evitar mistura de módulos.
-
-O carregador confere o SHA-256, os caminhos internos, os arquivos essenciais e a identidade do pacote. A distribuição compacta preserva byte a byte os módulos, dados, exemplos e documentos de método. Testes, caches e evidências históricas volumosas ficam na fonte completa. Consulte `docs/DISTRIBUICAO_COMPACTA0971.md` dentro do ZIP interno. O manifesto atual é criado apenas na distribuição; os manifestos históricos permanecem inalterados. Para uma verificação independente, extraia o ZIP interno em outra pasta e execute `python verificar_pacote.py` nessa pasta.
-
-Revisão local de desenvolvimento, sem publicação, push ou deploy. A evidência AppTest é funcional, sem validação visual em navegador. Testes de software não aprovam estruturalmente um projeto. As limitações dos métodos continuam aplicáveis.
-
-## Histórico preservado
-
-# LRO Ligações 0.9.70 — catálogo visual azul-marinho
-
-Pacote `0.9.70-catalogo-marinho-dev.1`. O catálogo visual opcional organiza as 26 famílias existentes por interface, modelo, grupo e busca. Selecionar uma miniatura apenas prepara a escolha; abrir a família é uma ação explícita. Os formulários de cálculo e os desenhos do projeto atual continuam sendo os nativos de cada família. As miniaturas são exemplos de presets, não resultados do projeto atual.
-
-O catálogo e o tema azul-marinho podem ser desativados. São recursos de apresentação e navegação; não alteram motores resistentes, projetos, unidades, métodos, limites técnicos nem exportações. A identidade do componente `lro.models.VERSION` permanece `0.9.44-beam-on-beam-partial-dev`. O módulo de identidade visual é reutilizável em futuros aplicativos; nenhum outro aplicativo foi modificado.
-
-## Executar o pacote compacto
-
-Descompacte o ZIP externo e mantenha juntos os quatro arquivos: `app.py`, `codigo_lro.zip`, `requirements.txt` e `README.md`. Com as dependências de `requirements.txt` disponíveis, execute `streamlit run app.py`. Não é necessário descompactar `codigo_lro.zip` para usar a aplicação. Ao atualizar de revisão, reinicie o processo Streamlit para evitar mistura de módulos.
-
-O carregador confere o SHA-256, os caminhos internos, os arquivos essenciais e a identidade do pacote. A distribuição compacta preserva byte a byte os módulos, dados, exemplos e documentos de método. Testes, caches e evidências históricas volumosas ficam na fonte completa. Consulte `docs/DISTRIBUICAO_COMPACTA0970.md` dentro do ZIP interno. O manifesto atual é criado apenas na distribuição; os manifestos históricos permanecem inalterados. Para uma verificação independente, extraia o ZIP interno em outra pasta e execute `python verificar_pacote.py` nessa pasta.
-
-Revisão local de desenvolvimento, sem publicação, push ou deploy. A evidência AppTest é funcional, sem validação visual em navegador. Testes de software não aprovam estruturalmente um projeto. As limitações dos métodos continuam aplicáveis.
-
-## Histórico preservado
-
-# LRO Ligações 0.9.69 — segurança de estado nas emendas W
-
-Correção restrita à interface das emendas W M004 e convencional N/M/V: entradas atuais inválidas, inclusive valores finitos que excedem a faixa numérica após conversão de unidades, deixam de interromper a tela mantendo resultado/Word anterior em sessão. O cálculo atual é marcado como inválido, os arquivos anteriores são removidos e as exportações ficam indisponíveis até corrigir os dados. O último projeto aceito é preservado.
-
-O defeito foi reproduzido com entradas extremas, não com ações usuais de projeto. Motores resistentes, geometrias, métodos, catálogos, desenhos e geradores de Word permanecem idênticos à 0.9.68. Não há nova rotina estrutural nem nova qualificação de métodos. A auditoria e a correção não abrangem as famílias paralisadas.
-
-Use os quatro arquivos juntos. Revisão local, sem publicação, push ou deploy. Consulte docs/VALIDACAO0969.md.
-
-# LRO Ligações 0.9.68
-
-Pequeno ajuste de apresentação das placas de base: oculta campos de cabeça/porca/chapa para tipos sem esse apoio, preservando os valores salvos. Na base U, o envelope suplementar do cone só aparece com cone ativo. Orientação diferencia referências para projetar e dados reais para conferir. Não cria dimensionamento automático de fck, bordas ou embutimento; motores, catálogos, desenhos e relatórios permanecem inalterados.
-
-## Novidades preservadas 0.9.67
-
-Nervura interna retangular das duas talas: envoltória de soldas entre o grupo de três bordas e a barra vertical bi-engastada, incluindo sensibilidade ao cisalhamento. Novos grupos vetoriais 3D verificam as soldas horizontais–coluna com ações concomitantes. N/Q/M e seções líquidas são informativos; resistência/estabilidade da chapa perfurada, capacidade/rigidez das chapas receptoras e rotação continuam pendentes. Sem dispensa de FLT.
-
-## Novidades preservadas 0.9.66
-
-Soldas em três bordas também para single plate entre mesas, sob hipótese elástica de chapa rígida. Resistência da chapa completa, receptores e rotação permanecem pendentes. Cálculos convencionais e demais famílias preservados.
-
-Use juntos app.py, codigo_lro.zip, requirements.txt e README.md. Não é necessário publicar a fonte completa de desenvolvimento.
-
-## Novidades preservadas 0.9.65
-
-Grupo elástico das soldas da nervura interna nas três bordas, com gargantas distintas e reações rastreáveis. A hipótese de chapa e apoios rígidos é explícita; resistência integral da nervura perfurada e receptores continuam pendentes.
-
-## Novidades preservadas 0.9.64
-- Nervura interna das duas talas: contato/rasgamento por parafuso, com ligamento medido na direção da força e contorno físico da chapa. Ramos que chegam às soldas permanecem limitados ao teto necessário, com transferência pendente.
-- A rotina não qualifica a resistência integral da nervura de três bordas.
-
-## Novidades preservadas 0.9.63
-- End plates: entradas/geometrias inválidas não alcançam o desenho proporcional; valores não finitos ou conversões excedidas não substituem o último projeto nem liberam exportações.
-- Word SCI recalculado pelas entradas atuais, impedindo reutilização de resultado antigo. Valores apresentados em português com vírgula decimal.
-- Equações, materiais, fatores, famílias DG39 e limites de qualificação preservados. Não há ganho resistente atribuído a linhas adicionais ou nervuras de detalhamento.
-
-## Novidades preservadas 0.9.62
-- Duas talas: validação robusta do diâmetro de catálogo, momento assinado coerente para cortante reverso e bloqueio do desenho/exportação quando a geometria é inválida.
-- Preservados grupo interno e folga inicial de 10 mm. A resistência integral da nervura interna perfurada permanece sem qualificação.
-
-## Novidades preservadas 0.9.61
-- Base engastada e end plate engastada: opção de nervuras de detalhamento, sem crédito resistente, com desenho e memorial. Os modelos de cálculo e suas falhas reais permanecem; variantes estruturais de end plate não são substituídas.
-- Espessura inicial comercial imediatamente superior à alma, editável; geometria com patamares de 20 mm.
-
-## Novidades preservadas 0.9.60
-- Console enrijecido: nova família com reação vertical, nervura recortada, soldas e alma receptora. Interface, projeto JSON, CSV e Word em português. Resultado qualificado ao escopo local.
-- Catálogo do console: dez perfis Gerdau com designação americana publicada e três referências AISC. As dimensões são nominais de catálogo, não medições reais. Materiais A36 ou A572 Gr.50 precisam corresponder ao certificado; A992 é reservado aos registros AISC.
-- Duas talas: configuração inicial com parafusos internos, extensão zero e folga real de 10 mm. Projetos importados conservam seus valores. Esta melhoria geométrica não fecha pendências anteriores do método.
-- End plate rotulada: aviso inicial claro de que a opção NBR N/V está em validação. A opção SCI continua selecionável, sem conversão automática entre métodos.
-
-## Domínios dos métodos
-O console utiliza AISC 360-16 LRFD e Manual AISC 15, detalhe de nervura recortada na alma de pilar. Não cobre ações horizontais independentes, levantamento, torção, momento imposto ou estabilidade global. Não constitui conversão de fatores AISC para NBR. Confira docs/DOMINIO_PILARES.txt e INTEGRACAO_CONSOLE.txt.
-A opção SCI de end plate mantém SCI/BCSA P358 §4.7 e Eurocode UK: somente cisalhamento vertical na alma da coluna, aço S275/S355 efetivamente especificado, chapa S275 de 10/12 mm e M20 classe 8.8. Geometria Gerdau não equivale a aço EN. Referência: https://www.steelconstruction.info/images/a/a9/SCI_P358.pdf
-
-## Distribuição e verificação
-Pacote compacto preserva todos os módulos, dados e exemplos. Fonte integral e testes são preservados separadamente. O manifesto atual confere o pacote. Consulte docs/VALIDACAO0968.md para cobertura e limites. Testes de software não equivalem à aprovação estrutural de um projeto. Pendências técnicas permanecem identificadas nos métodos correspondentes.
+REVISÃO EDITORIAL: relatório Word resumido por família e critério, com IDs rastreáveis, fontes, solicitações e capacidades. Condições comuns e todas as falhas/pendências são preservadas. Indicadores internos de desenvolvimento não são apresentados como premissas físicas. O JSON completo permanece disponível como anexo eletrônico opcional. Cálculos resistentes e entradas da candidata anterior não foram alterados.
