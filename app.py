@@ -17,7 +17,7 @@ BUNDLE_SHA256 = '370427cbcd169b2de9a0bc58c2d05e07419b80309e51d8bde30e08d64da33e9
 BUNDLE_NAME = 'codigo_lro.zip'
 PACKAGE_ID = '0.9.73'
 ADDON_NAME = 'dg39_candidate.zip'
-ADDON_SHA256 = 'fbcfd582b4247017a664d1205f0cc312e5a3dd8ab4096e9222a3830b0d626fc8'
+ADDON_SHA256 = '68e5033ba0d8bdc3653cb54af6d76b8f0ec0e7447817462253db99639bee535c'
 
 
 @st.cache_resource(show_spinner=False)
@@ -105,6 +105,7 @@ def main():
                 st.stop()
     if str(root) not in sys.path:
         sys.path.insert(0, str(root))
+    st.sidebar.caption('Extensão DG39 · estudo inclinado · 20261030-S1 · sem aprovação agregada')
     runpy.run_path(str(root / 'app.py'), run_name='__main__')
 
 
