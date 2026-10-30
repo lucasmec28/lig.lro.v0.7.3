@@ -16,13 +16,17 @@ import streamlit as st
 BUNDLE_SHA256 = '370427cbcd169b2de9a0bc58c2d05e07419b80309e51d8bde30e08d64da33e99'
 BUNDLE_NAME = 'codigo_lro.zip'
 PACKAGE_ID = '0.9.73'
+ADDON_NAME = 'dg39_candidate.zip'
+ADDON_SHA256 = 'aa2e4910cde167e4de1312c33b77c378798ccb58dd260b7d931379e97c43dd42'
 
 
 @st.cache_resource(show_spinner=False)
-def prepare_code(archive_bytes, digest):
+def prepare_code(archive_bytes, digest, addon_bytes, addon_digest):
     """Uma extração privada por processo, reaproveitada nas interações da tela."""
     if sha256(archive_bytes).hexdigest() != digest:
         raise ValueError('O arquivo de código não corresponde a esta versão do app.py.')
+    if sha256(addon_bytes).hexdigest() != addon_digest:
+        raise ValueError('Extensão DG39 não corresponde a esta revisão.')
     holder = TemporaryDirectory(prefix='lro973coverplate_')
     root = Path(holder.name)
     try:
@@ -49,6 +53,22 @@ def prepare_code(archive_bytes, digest):
                      'lro/w_splice_slip.py','lro/w_splice_conventional.py','lro/bolted_seat.py','lro/seated_variants.py','lro/seated_variants_ui.py','lro/seated_variants_drawing.py','lro/seated_variants_report.py', 'lro/package_identity.py', 'lro/beam_direct_seat.py', 'lro/beam_direct_seat_ui.py', 'lro/beam_direct_seat_presentation.py', 'lro/beam_direct_seat_drawing.py', 'lro/beam_direct_seat_report.py', 'lro/channel_upper_washer.py','lro/channel_base_plate.py','lro/channel_base_plate_ui.py','lro/channel_catalog.py','data/gerdau_u.json'):
             if not (root / name).is_file():
                 raise ValueError('Arquivo obrigatório ausente: ' + name)
+        # Extensão pequena, local e versionada; não altera o bundle histórico.
+        with ZipFile(BytesIO(addon_bytes)) as addon:
+            seen_addon = set()
+            for item in addon.infolist():
+                path = PurePosixPath(item.filename)
+                allowed = item.filename == 'app.py' or (len(path.parts) == 2 and path.parts[0] == 'dg39_top_column_candidate' and path.suffix == '.py')
+                if (not allowed or path.is_absolute() or '..' in path.parts
+                        or '\\' in item.filename or ':' in item.filename
+                        or item.filename in seen_addon
+                        or (item.external_attr >> 16) & 0o170000 == 0o120000):
+                    raise ValueError('Caminho inválido na extensão DG39.')
+                seen_addon.add(item.filename)
+            required_addon = {'app.py', 'dg39_top_column_candidate/__init__.py', 'dg39_top_column_candidate/ui.py', 'dg39_top_column_candidate/direct4e_route.py'}
+            if not required_addon.issubset(seen_addon) or addon.testzip() is not None:
+                raise ValueError('Extensão DG39 incompleta ou corrompida.')
+            addon.extractall(root)
         identity = runpy.run_path(str(root / 'lro/package_identity.py'))
         if identity.get('PACKAGE_ID') != PACKAGE_ID:
             raise ValueError('Identidade do pacote de revisao incompativel.')
@@ -68,7 +88,8 @@ def main():
         data = archive_path.read_bytes()
         if sha256(data).hexdigest() != BUNDLE_SHA256:
             raise ValueError('app.py e codigo_lro.zip são de pacotes diferentes ou o ZIP foi alterado.')
-        root, holder = prepare_code(data, BUNDLE_SHA256)
+        addon_data = Path(__file__).resolve().with_name(ADDON_NAME).read_bytes()
+        root, holder = prepare_code(data, BUNDLE_SHA256, addon_data, ADDON_SHA256)
     except (OSError, ValueError, BadZipFile) as exc:
         st.error('Não foi possível abrir o pacote LRO: ' + str(exc))
         st.info('Use os arquivos da mesma revisao e reinicie o app local.')
@@ -76,7 +97,7 @@ def main():
 
     # Uma atualização deve iniciar um novo processo, sem misturar módulos antigos.
     for name, module in tuple(sys.modules.items()):
-        if name == 'lro' or name.startswith(('lro.', 'stiffened_base_app_candidate_20261017', 'stiffened_base_kernels_candidate_20261017')):
+        if name in ('lro','dg39_top_column_candidate') or name.startswith(('lro.', 'dg39_top_column_candidate.', 'stiffened_base_app_candidate_20261017', 'stiffened_base_kernels_candidate_20261017')):
             module_file = getattr(module, '__file__', None)
             if module_file and not Path(module_file).resolve().is_relative_to(root):
                 st.error('Uma versão anterior está carregada. Reinicie o app no Streamlit '
