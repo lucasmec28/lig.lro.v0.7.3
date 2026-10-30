@@ -17,7 +17,7 @@ BUNDLE_SHA256 = '370427cbcd169b2de9a0bc58c2d05e07419b80309e51d8bde30e08d64da33e9
 BUNDLE_NAME = 'codigo_lro.zip'
 PACKAGE_ID = '0.9.73'
 ADDON_NAME = 'dg39_candidate.zip'
-ADDON_SHA256 = '4bd80463e09d646e4431e8e933ce318e693ad31408d3eb8e040a3202efe4c211'
+ADDON_SHA256 = '813d008b37dd8fd4d2d636b18eab4fd77bd59ab03d2835be7425b5bf84c2f1fa'
 
 
 @st.cache_resource(show_spinner=False)
